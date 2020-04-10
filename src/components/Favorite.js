@@ -79,23 +79,16 @@ class Favorite extends Component {
     if (storedWeather) {
       return (
         <div className="container-favorite">
-          <div className="toggle-container-favorite">
-            <span className="toggle">
-              <Toggleswitch />
-            </span>
+          <div className="toggle-container">
+            <Toggleswitch />
           </div>
 
-          <div
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "30px"
-            }}
-          >
+          <div className="splitText">
             <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
               My favorites
             </SplitText>
           </div>
+          <br />
           {this.state.loading ? (
             <div className="spiner_loading">
               <div className="spinner-grow text-primary" role="status">
@@ -143,7 +136,6 @@ class Favorite extends Component {
             <button
               type="button"
               className="btn btn-light btn-lg"
-              // className="btn btn-secondary btn-lg"
               data-toggle="modal"
               data-target="#myModal"
             >

@@ -9,7 +9,7 @@ const Header = ({ children }) => {
         <div className="container-link">
           <nav className="navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
             <div className="collapse navbar-collapse">
-              <div className="box1">
+              <div className="nav-title">
                 <h5>Weather forecast</h5>
               </div>
               <div className="box2">

@@ -40,99 +40,92 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="toggle-container">
-          <span className="toggle">
+        <div className="toggle-location">
+          <span className="toggle-container">
             <Toggleswitch />
           </span>
-        </div>
-        <div className="container-search-location">
           <div className="displayLocation">
             <img
               className="LocationImgStyle"
               src={require("../data/icons/icons8-location-8000.png")}
               alt="location"
             />
-            <span className="myLocation">{this.props.dataLocation}</span>
+            <p className="myLocation">{this.props.dataLocation}</p>
           </div>
-          <Search />
         </div>
-        <div className="card-deck1">
-          <div className="dori-container1">
-            <div className="Addfavotire">
-              <Addfavotire />
-            </div>
-            <div className="card-title">
-              {this.props.forcast.map((temp, i) => {
-                return (
-                  <div key={i} className="cityText">
-                    <SplitText
-                      initialPose="exit"
-                      pose="enter"
-                      charPoses={charPoses}
-                    >
-                      {this.props.cityName}
-                    </SplitText>
-                    <br />
-                    <div className="container-toggle-Temperature">
-                      <h6 className="card-title">
-                        {this.state.flagToggle
-                          ? temp.Temperature.Metric.Value + " ℃"
-                          : temp.Temperature.Imperial.Value + " °F"}
-                      </h6>
-                      <div className="toggleTemp">
-                        <BootstrapSwitchButton
-                          checked={true}
-                          offlabel="°F"
-                          onstyle="info"
-                          offstyle="info"
-                          onlabel="℃"
-                          size="sm"
-                          onChange={checked => {
-                            this.setState({ flagToggle: checked });
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <h6 className="card-title">{this.props.cityId}</h6>
-                    <h6 className="card-title">{temp.WeatherText}</h6>
-                    <img
-                      style={{ margin: "-20px" }}
-                      src={iconsSwitch1(temp.WeatherText)}
-                      alt="none"
-                    />
+        {/* <Hamburger /> */}
+        <Search />
+        <div className="container">
+          <div className="container-card2">
+            {this.props.forcast.map((temp, i) => {
+              return (
+                <div key={i} className="card-in">
+                  <div className="Addfavotire">
+                    <Addfavotire />
                   </div>
-                );
-              })}
-            </div>
-          </div>
 
-          <div className="card-deck">
+                  <SplitText
+                    initialPose="exit"
+                    pose="enter"
+                    charPoses={charPoses}
+                  >
+                    {`${this.props.cityName}, ${this.props.cityId}`}
+                  </SplitText>
+                  <div className="container-toggle-Temperature">
+                    <h6 className="title-city">
+                      {this.state.flagToggle
+                        ? temp.Temperature.Metric.Value + " ℃"
+                        : temp.Temperature.Imperial.Value + " °F"}
+                    </h6>
+                    <div className="toggleTemp1">
+                      <BootstrapSwitchButton
+                        checked={true}
+                        offlabel="°F"
+                        onstyle="info"
+                        offstyle="info"
+                        onlabel="℃"
+                        size="sm"
+                        onChange={checked => {
+                          this.setState({ flagToggle: checked });
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="container-WeatherText-iconsSwitch1">
+                    <h6>{`${temp.WeatherText}`}</h6>
+                    <img src={iconsSwitch1(temp.WeatherText)} alt="none" />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="all">
             {this.props.forcasts.map((temp, i) => {
               const fahrenheitMin = temp.Temperature.Minimum.Value;
               const fahrenheitMax = temp.Temperature.Maximum.Value;
               const CelsiusMin = ((5 / 9) * (fahrenheitMin - 32)).toFixed(0);
               const CelsiusMax = ((5 / 9) * (fahrenheitMax - 32)).toFixed(0);
               return (
-                <div key={i} className="card-box">
-                  <h5 className="card-title">
+                <div key={i} className="item">
+                  <h5 className="card-title2">
                     {moment(temp.Date).format("L")}
                   </h5>
-                  <h5 className="card-title">
+                  <h5 className="card-title2">
                     {moment(temp.Date).format("dddd")}
                   </h5>
                   {this.state.flagToggle ? (
-                    <h5 className="card-text">
+                    <h5 className="card-text1">
                       {CelsiusMin} - {CelsiusMax} {" ℃"}
                     </h5>
                   ) : (
-                    <h5 className="card-text">
+                    <h5 className="card-text1">
                       {fahrenheitMin} - {fahrenheitMax} {" °F"}
                     </h5>
                   )}
-                  <h6 className="card-title">{this.props.cityId}</h6>
+                  <h6 className="card-title1">{this.props.cityId}</h6>
                   {/* <br /> */}
                   <img
-                    className="img-icon-home"
+                    className="img-icon-home1"
                     // style={{ width: "80px" }}
                     src={iconsSwitch1(temp.Day.IconPhrase)}
                     alt="none"
@@ -143,12 +136,10 @@ class App extends Component {
           </div>
         </div>
         <br />
-        <br />
-        <br />
-        <span className="aaa">React Weather-app made by Dori with ❤️</span>
-        {/* <div className="line-1 anim-typewriter">
-          React Weather-app <br /> Made by Dori with ❤️
-        </div> */}
+        <div className="line-1 anim-typewriter">
+          React Weather-app <br />
+          Made by Dori with ❤️
+        </div>
       </div>
     );
   }

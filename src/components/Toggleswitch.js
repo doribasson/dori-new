@@ -6,8 +6,7 @@ class Toggleswitch extends Component {
     checked: false
   };
 
-  componentWillMount() {
-    console.log(document.querySelector("body").style.backgroundColor);
+  UNSAFE_componentWillMount() {
     if (
       document.querySelector("body").style.backgroundColor ===
       "rgb(46, 89, 160)"
@@ -18,14 +17,14 @@ class Toggleswitch extends Component {
 
   handleChange = () => {
     if (this.state.checked) {
-      // document.querySelector(".btn.btn-info").style.backgroundColor = "#f4f4f4";
       document.querySelector(".bd-navbar").style.background = "#254880";
       document.querySelector("body").style.backgroundColor = "rgb(46, 89, 160)";
+
       this.setState({ checked: false });
     } else {
-      // document.querySelector(".btn.btn-info").style.backgroundColor = "#f4f4f4";
       document.querySelector(".bd-navbar").style.background = "#707a7e";
       document.querySelector("body").style.backgroundColor = "#1a1919";
+
       this.setState({ checked: true });
     }
   };
